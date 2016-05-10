@@ -1,0 +1,20 @@
+<div class="control-group asl__field">
+  <label class="asl__field--label">{{$ctrl.option.name}}</label>
+  <i class="fa fa-times asl__field--icon" ng-click="$ctrl.delete()" title="Remove {{$ctrl.option.name}} Search Option"></i>
+  <div class="asl__field--input">
+    <input type="text"
+           class="form-control"
+           uib-datepicker-popup="{{$ctrl.dateFormat}}"
+           ng-model="$ctrl.date"
+           ng-model-options="$ctrl.modelOptions"
+           datepicker-options="$ctrl.dateOptions"
+           is-open="$ctrl.opened"
+           on-open-focus="true"
+           close-text="Close" />
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="$ctrl.open()">
+        <i class="fa fa-calendar"></i>
+      </button>
+    </span>
+  </div>
+</div>
