@@ -12,7 +12,7 @@
         <ui-select-match placeholder="Add Search Fields...">
           {{$ctrl.selected}}
         </ui-select-match>
-        <ui-select-choices group-by="'group'" repeat="option in ($ctrl.options | filter: $select.search)">
+        <ui-select-choices group-by="'group'" repeat="option in ($ctrl.availableOptions | filter: $select.search)">
           {{option.name}}
         </ui-select-choices>
     </div>
