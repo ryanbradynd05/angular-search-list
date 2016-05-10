@@ -1,0 +1,61 @@
+<div class="container-fluid asl">
+  <div class="row asl-row">
+    <div class="asl__suggestions">
+      <ui-select class="ng-hide"
+                 search-enabled="true"
+                 reset-search-input="true"
+                 theme="bootstrap"
+                 ng-show="$ctrl.loaded"
+                 ng-model="$ctrl.selected"
+                 on-select="$ctrl.selectOption($item, $model)"
+                 close-on-select="true">
+        <ui-select-match placeholder="Add Search Fields...">
+          {{$ctrl.selected}}
+        </ui-select-match>
+        <ui-select-choices group-by="'group'" repeat="option in ($ctrl.options | filter: $select.search)">
+          {{option.name}}
+        </ui-select-choices>
+    </div>
+  </div>
+  <div class="row ng-hide asl__row" ng-show="$ctrl.selectedOptions.length > 0">
+    <span class="pull-right asl__remove ng-hide" ng-show="$ctrl.loaded">
+      <i class="fa fa-trash" title="Clear All Selected Search Options" ng-click="$ctrl.clear()"></i>
+    </span>
+  </div>
+  <div class="row ng-hide asl__row" ng-show="$ctrl.selectedOptions.legth > 0">
+    <span ng-repeat="option in $ctrl.selectedOptions">
+      <div class="col-md-4">
+        <div ng-switch on="option.type">
+          <div ng-switch-when="text">
+            <asl-text option="option"
+                      update="$ctrl.updateOption(option)"
+                      delete="$ctrl.deleteOption(option)">
+            </asl-text>
+          </div>
+          <div ng-switch-when="date">
+            <asl-date option="option"
+                      update="$ctrl.updateOption(option)"
+                      delete="$ctrl.deleteOption(option)">
+            </asl-date>
+          </div>
+          <div ng-switch-when="select">
+            <asl-select option="option"
+                      update="$ctrl.updateOption(option)"
+                      delete="$ctrl.deleteOption(option)">
+            </asl-select>
+          </div>
+          <div ng-switch-when="checkbox">
+            <asl-checkbox option="option"
+                      update="$ctrl.updateOption(option)"
+                      delete="$ctrl.deleteOption(option)">
+            </asl-checkbox>
+          </div>
+          </div>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+<button ng-click="$ctrl.search()" class="btn btn-lg center-block">
+  Search
+</button>
