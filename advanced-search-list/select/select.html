@@ -1,0 +1,18 @@
+<div class="control-group asl__field">
+  <label class="asl__field--label">{{$ctrl.option.name}}</label>
+  <i class="fa fa-times" ng-click="$ctrl.delete()" title="Remove {{$ctrl.option.name}} Search Option"></i>
+  <ui-select search-enabled="true"
+             reset-search-input="true"
+             theme="bootstrap"
+             ng-model="$ctrl.option.value"
+             close-on-select="true">
+    <ui-select-match>
+      {{$ctrl.option.value.label}}
+    </ui-select-match>
+    <ui-select-choices repeat="option in ($ctrl.option.options | filter: $select.search)">
+      <div title="{{option.hover}}">
+        {{option.label}}
+      </div>
+    </ui-select-choices>
+  </ui-select>
+</div>
